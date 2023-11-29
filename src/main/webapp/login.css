@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap");
+
+*{
+     font-family: "nunito", sans-serif;
+     font-size: 16px;
+}
+
+:root {
+    --green: #27ae60;
+    --black: #192a56;
+    --light-color: #666;
+    --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  }
+
+.login{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70vh;
+  width: 30vw;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px 2px rgba(0, 0, 0,0.2);
+}
+
+.login h2{
+    text-align: center;
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--black);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.ip
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:25px;
+    
+}
+
+.ip .inputs{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    
+}
+.inputs input{
+    background-color:#e4e4e4;
+    border-radius: 10px;
+    width: 75%;
+    height: 38px;
+    padding: 0 15px;
+}
+
+
+
+.submit input{
+    background: none;
+    border-radius: 5px;
+    background-color: var(--black);
+    padding: 6px 12px;
+    color: #fff;
+}
+
+.submit input:hover{
+    padding: 6px 14px ;
+    background-color: var(--green);
+}
+
+
+.forgot{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px ;
+}
+
+
+
+.login a:visited{
+    color: dodgerblue;
+}
+.login a:hover{
+    color: #192a56;
+    text-decoration: underline;
+}
