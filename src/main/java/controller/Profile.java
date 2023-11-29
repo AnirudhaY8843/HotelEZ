@@ -44,10 +44,10 @@ public class Profile extends HttpServlet{
 		    	 req.setAttribute("user", user);
 		    	 RequestDispatcher rd=req.getRequestDispatcher("profile.jsp");
 		    	 rd.forward(req, resp);
-		    }
-		    else {
-		    	resp.sendRedirect("login.jsp");
-		    }
+		     }
+		     else {
+		    	 resp.sendRedirect("login.jsp");
+		     }
 		                
 		  
 			
