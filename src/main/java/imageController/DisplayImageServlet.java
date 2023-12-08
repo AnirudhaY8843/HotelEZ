@@ -7,6 +7,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,27 +17,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.UserDAO;
+import model.UserDTO;
+
 @WebServlet("/DisplayImageServlet")
 public class DisplayImageServlet extends HttpServlet {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/hotelez";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "128843";
     
+   
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	ArrayList<UserDTO> user=new ArrayList<UserDTO>();
+		HttpSession session=request.getSession(false);
+		
+		if(session!=null) {
+			//need to cast in String
+			String username=(String) session.getAttribute("username");
+			
+			UserDTO dto=new UserDTO();
+			dto.setUserName(username);
+			
+			UserDAO dao =new UserDAO();
+			user=dao.getprofile(dto);
+			
+			
+		     if(user!=null && !user.isEmpty()) {
+		    	 request.setAttribute("user", user);
+		    	 RequestDispatcher rd=request.getRequestDispatcher("profile.jsp");
+		    	 rd.forward(request, response);
+		     
+    	
+    	
+    	
+    	
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         InputStream inputStream = null;
-        
-        String username=null;
-        //session attribute
-        
-        HttpSession session=request.getSession(false);
-		if(session!=null) {
-			//need to cast in String
-			username=(String) session.getAttribute("username");
-		}
-        
+         
         System.out.println("Hello i am working brother");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -81,5 +103,12 @@ public class DisplayImageServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        
+		     }
+		     else {
+		    	 response.sendRedirect("login.jsp");
+		     }
+    	
+		}
+		}
 }

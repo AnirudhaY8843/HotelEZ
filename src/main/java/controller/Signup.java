@@ -39,11 +39,19 @@ public class Signup extends HttpServlet {
 		}
 		
 		UserDAO dao=new UserDAO();
-		user=dao.signUp(dto);
 		
+		boolean flag=dao.userExist(username);
+		
+		user=dao.signUp(dto);
+		if(user!=null && flag==false) {
 			req.setAttribute("user", user);
 			RequestDispatcher rd=req.getRequestDispatcher("profile.jsp");
 			rd.forward(req, resp);
-		
+		}
+		else{
+			req.setAttribute("loginmsg", "somthing went wrong resubmit details");
+			RequestDispatcher rd=req.getRequestDispatcher("signup.jsp");
+			rd.forward(req, resp);
+		}
 	}
 }

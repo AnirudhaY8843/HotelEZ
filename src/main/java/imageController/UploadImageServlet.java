@@ -49,13 +49,15 @@ public class UploadImageServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-
+            
+           
             String sql = "UPDATE user SET image =? WHERE username=?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);; // Assuming user_id is 1 (replace with your user identification logic)
-            preparedStatement.setBlob(2, inputStream);
+            preparedStatement.setString(2, username);; // Assuming user_id is 1 (replace with your user identification logic)
+            preparedStatement.setBlob(1, inputStream);
 
             preparedStatement.executeUpdate();
+   
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -75,7 +77,7 @@ public class UploadImageServlet extends HttpServlet {
             }
         }
 
-        response.sendRedirect("profile.jsp"); // Redirect back to the form after uploading
+        response.sendRedirect("profile"); // Redirect back to the form after uploading
     }
 }
 

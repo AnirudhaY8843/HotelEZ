@@ -8,20 +8,21 @@ public class UserDTO {
 	private long contact;
 	private String email;
 	private String password;
-	private byte[] imageData;
+	private byte[] image;
 	
 	private String adress;
 	private int reviewId;
+
 	
-	public byte[] getImageData() {
-		return imageData;
+	
+	
+	public byte[] getImage() {
+		return image;
 	}
-	public void setImageData(byte[] imageData) {
-		this.imageData = imageData;
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
-	
-	
-//	Getters and setters for user
+	//	Getters and setters for user
 	public int getUserId() {
 		return userId;
 	}

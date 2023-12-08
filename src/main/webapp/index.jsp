@@ -40,16 +40,19 @@
         <a  class="" href="#dishes">dishes</a>
         <a  class="" href="#about">about</a>   
         <a class=""  href="review">review</a>
-        <a  class="" href="#order">order</a>
+        <a class=""  href="menu" >Menu</a>
+        <a  class="" href="menu">order</a>
         <a  class="" href="./login.jsp">login</a>
     </nav>
      <!-- navbar -->
     <div class="icons">
         <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
+       <%--<i class="fas fa-search" id="search-icon"></i>
         <a href="#" class="fas fa-heart"></a>
+        
+         --%> 
         <%
-        if(session1!=null) {
+        if(session!=null) {
         %>
         <a href="profile" class="fa-solid fa-user"></a>
         <%} %>
@@ -80,7 +83,7 @@
                     <span>Our special Dishes</span>
                     <h3>spicy noodles</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ipsa incidunt quaerat.</p>
-                    <a href="#" class="btn">order now</a>
+                    <a href="#" class="btn">Happy Meal</a>
                 </div>
                 <div class="image">
                     <img src="./images/image-1.png" alt="noodles">
@@ -92,7 +95,7 @@
                     <span>Our special Dishes</span>
                     <h3>fried chicken</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet ipsa incidunt quaerat.</p>
-                    <a href="#" class="btn">order now</a>
+                    <a href="#" class="btn">Happy Meal</a>
                 </div>
                 <div class="image">
                     <img src="./images/image-2.jpg" alt="chicken">
@@ -137,20 +140,20 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>
-                &#8377;500
+                
             </span>
-            <a href="#" class="btn">add to cart</a>
+          <%--  <a href="#" class="btn">add to cart</a> --%>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
             <img src="./images/dish-1.jpg"  alt="">
-            <h3>tasty food</h3>
+            <h3>Italian food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -159,16 +162,16 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>
-                &#8377;500
+                
             </span>
-            <a href="#" class="btn">add to cart</a>
+            <%--  <a href="#" class="btn">add to cart</a> --%>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
             <img src="./images/dish-1.jpg"  alt="">
-            <h3>tasty food</h3>
+            <h3>chinise food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -177,16 +180,16 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>
-                &#8377;500
+                
             </span>
-            <a href="#" class="btn">add to cart</a>
+             <%--  <a href="#" class="btn">add to cart</a> --%>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
             <img src="./images/dish-1.jpg"  alt="">
-            <h3>tasty food</h3>
+            <h3>punjabi food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -195,16 +198,16 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>
-                &#8377;500
+               
             </span>
-            <a href="#" class="btn">add to cart</a>
+             <%--  <a href="#" class="btn">add to cart</a> --%>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
             <img src="./images/dish-1.jpg"  alt="">
-            <h3>tasty food</h3>
+            <h3>mexican food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -213,16 +216,16 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>
-                &#8377;500
+               
             </span>
-            <a href="#" class="btn">add to cart</a>
+             <%--  <a href="#" class="btn">add to cart</a> --%>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
             <img src="./images/dish-1.jpg" >
-            <h3>tasty food</h3>
+            <h3>irish food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -231,9 +234,9 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>
-                &#8377;500
+                
             </span>
-            <a href="#" class="btn">add to cart</a>
+             <%--  <a href="#" class="btn">add to cart</a> --%>
         </div>
 
 
@@ -446,6 +449,7 @@
 
 <!-- review ends -->
 <!-- order section -->
+<%--
 <section class="order" id="order">
 
     <h3 class="sub-heading">Order now</h3>
@@ -500,7 +504,7 @@
     </form>
 
 </section>
-
+ --%>
 
 <!-- order section is ended -->
 

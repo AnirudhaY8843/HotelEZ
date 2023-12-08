@@ -47,11 +47,7 @@
 </head>
 
 <body>
-<%
 
-	HttpSession session1=request.getSession(false);
-
-%>
 <%
 
 	ArrayList<ReviewDTO> review=new ArrayList();
@@ -67,11 +63,12 @@
      <!-- logo -->
      <!-- navbar -->
     <nav class="navbar">
-        <a class="active" href="#home">Home</a>
-        <a  class="" href="#dishes">dishes</a>
-        <a  class="" href="#about">about</a>   
+        <a class="" href="index.jsp#home">Home</a>
+        <a  class="" href="index.jsp#dishes">dishes</a>
+        <a  class="" href="index.jsp#about">about</a>   
         <a class=""  href="review">review</a>
-        <a  class="" href="#order">order</a>
+        <a class="active"  href="menu">menu</a>
+        <a  class="" href="menu">order</a>
         <a  class="" href="./login.jsp">login</a>
     </nav>
      <!-- navbar -->
@@ -80,7 +77,7 @@
         <i class="fas fa-search" id="search-icon"></i>
         <a href="#" class="fas fa-heart"></a>
         <%
-        if(session1!=null) {
+        if(session!=null) {
         %>
         <a href="profile" class="fa-solid fa-user"></a>
         <%} %>

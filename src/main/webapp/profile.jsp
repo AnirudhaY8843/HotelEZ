@@ -1,3 +1,5 @@
+<%@page import="model.OrderDTO"%>
+<%@page import="java.util.Base64"%>
 <%@page import="model.UserDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -18,7 +20,7 @@
 
 	<style type="text/css">
 	body{
-		height: 80vh;
+		height: 5vh;
 		width: 100vw;
 		position: relative;
 	}
@@ -67,6 +69,40 @@
 	.logfirst{
 		margin-top: 40vh;
 	}
+	
+	.file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 10px;
+            top: 0;
+            opacity: 0;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: #fff;
+            font-size:16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+       
+       .dishes{
+       	margin-top: 100vh;
+       	position: absolute;
+       	width:100vw;
+       }n
+       .box-container{
+       	display: grid;
+       	grid-template-columns:1fr 1fr 1fr;
+       }
 	</style>
     <title>HotelEZ</title>
 </head>
@@ -86,7 +122,8 @@
         <a  class="" href="index.jsp#dishes">dishes</a>
         <a  class="" href="index.jsp#about">about</a>   
         <a class=""  href="review">review</a>
-        <a  class="" href="index.jsp#order">order</a>
+        <a  href="menu">menu</a>
+        <a  class="" href="menu">order</a>
         <a  class="" href="login.jsp">login</a>
     </nav>
      <!-- navbar -->
@@ -105,7 +142,7 @@
 
 <!-- search form -->
 
-<form action="" id="search-form">
+<form action="" id="search-form" method="get">
     <input type="search" placeholder="search" name="" id="search-box">
     <label for="search-box" class="fas fa-search"></label>
     <i class="fas fa-times" id="close"></i>
@@ -126,14 +163,25 @@
 <div class="container">
     <div class="card">
       <div class="profile-picture">
-        <a href="DisplayImageServlet"><img src="./images/user-img.png" id="profileImage" alt="Profile Picture"></a>
+        <a href="profile">
+       <% if (data.getImage() != null) { %>
+            <img src="data:image/jpeg;base64,<%= new String(Base64.getEncoder().encode(data.getImage())) %>" id="profileImage" alt="Profile Picture">
+        <% } else { %>
+            <img src="./images/user-img.png" id="profileImage" alt="Default Profile Picture">
+        <% } %>
+        
+        </a>
       </div>
-     <%-- <form action="UploadImageServlet" class="im" method="post" enctype="multipart/form-data">
-      	<label for="file">Update Image</label>
-      	<input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" value="select">
+ 
+ 	 <form action="UploadImageServlet" class="im" method="post" enctype="multipart/form-data">
+ 	 <div class="file-input-wrapper">
+      	<label class="file-input-label" for="file">choose file
+      		<input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" value="select">
+      	</label>
+      	</div>
       	<input class="button btn" type="submit" value="Upload Image">
       </form>
-      --%> 
+
       <h2 class="name"><%=data.getFullName() %></h2>
       <h3 class="username">username : @<%=data.getUserName() %></h3>
       <p class="contact">Contact : <%=data.getContact() %></p>
@@ -147,8 +195,62 @@
     			%>
     		<%}else{ 
     		%>
-    		<h1 class="logfirst">Please Login first....</h1>
+    		response.sendRedirect("profile.jsp");
     		<%} %>
+    		
+   <section class="dishes" id="dishes">
+    <h3 class="sub-heading"> Orders</h3>
+    <h1 class="heading">Have a good food</h1>
+
+	
+    <div class="box-container">
+    		<%
+    		ArrayList<OrderDTO> order=new ArrayList<OrderDTO>();
+    		order=(ArrayList<OrderDTO>)request.getAttribute("orders");
+    		if(order!=null){
+    		for(OrderDTO data:order){
+    		%>
+        <div class="box">
+             <h3>Order Id : <%=data.getOrderId() %></h3>
+            <h3>Dish : <%=data.getFoodName() %></h3>
+            <h1>Price : &#8377; <%=data.getPrice() %></h1>
+            <h1>order Adress : <%=data.getAdress() %></h1>
+            <h1>No .of Dishes : <%=data.getNoOfDish() %></h1>
+           
+            
+            <span>
+               <h1>Total Bill :  &#8377;<%=data.getPrice()*data.getNoOfDish() %></h1>
+            </span>
+          <form action="cancel" method="get">
+          	<input type="hidden" name="orderid" value="<%=data.getOrderId()%>">
+          	<input class="btn" type="submit" value="cancel Order">
+          </form>
+        </div>
+      
+    		<%}}
+    		%>
+    		
+      </div>
+</section>
+    	<%--	<script>
+        // Function to fetch and set the image source
+        function displayProfileImage() {
+        	<%String username=(String)session.getAttribute("username"); %>
+            // Assuming the user ID is 1 (replace with your user identification logic)
+            var userId = username;
+
+            // Construct the URL of the DisplayImageServlet with the user ID
+            var imageUrl = "profile?username=" + username;
+
+            // Set the image source
+            document.getElementById("profileImage").src = imageUrl;
+        }
+
+        // Call the function when the page loads
+        window.onload = displayProfileImage;
+        
+    </script>
+    --%>
 </body>
 
 </html>

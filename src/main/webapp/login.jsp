@@ -19,6 +19,13 @@
     		font-size: 12px;
     		text-align: center;
     	}
+    	
+    	.err-1{
+    		margin-top:80px;
+    		color: red;
+    		font-size: 20px;
+    		text-align: center;
+    	}
     </style>
     <title>HotelEZ</title>
 </head>
@@ -64,6 +71,14 @@
 
 <!-- Login Form -->
 
+ <%
+        String msg1=(String)request.getAttribute("loginmsg");
+    		%>
+    		
+    	<c:if test="${not empty requestScope.loginmsg}">
+        <h1 class="err-1">${requestScope.loginmsg }</h1>
+    	</c:if>
+
 <div class="login">
     <form action="login" method="post">
         <h2>Login To HotelEZ</h2>
@@ -88,7 +103,7 @@
         </div>
         <div class="forgot">
             <a href="#"><span>forgot password ?</span></a>
-            <a href="./signup.html">New user? signup</a>
+            <a href="./signup.jsp">New user? signup</a>
         </div>
     </form>
 </div>

@@ -37,7 +37,7 @@ public class UserDAO {
 			String username=dto.getUserName();
 			String password=dto.getPassword();
 			String query="SELECT username,password FROM user";
-			String query2="SELECT fullname,username,contact,email from user WHERE username=?";
+			String query2="SELECT fullname,username,contact,email,image from user WHERE username=?";
 			
 			try {
 				pstmt=con.prepareStatement(query);
@@ -55,11 +55,13 @@ public class UserDAO {
 							String userName=rs.getString(2);
 							long contact=rs.getLong(3);
 							String email=rs.getString(4);
+							byte[] image=rs.getBytes(5);
 							UserDTO obj= new UserDTO();
 							obj.setFullName(fullName);
 							obj.setUserName(userName);
 							obj.setContact(contact);
 							obj.setEmail(email);
+							obj.setImage(image);
 							user.add(obj);
 						}
 					}
@@ -84,7 +86,7 @@ public class UserDAO {
 		
 		String query="INSERT INTO user (fullname,username,contact,email,password) values(?,?,?,?,?)";
 		
-		String query2="SELECT fullname,username,contact,email from user WHERE username=?";
+		String query2="SELECT fullname,username,contact,email,image from user WHERE username=?";
 		
 		
 		try {
@@ -106,11 +108,13 @@ public class UserDAO {
 					String userName=rs.getString(2);
 					long contact=rs.getLong(3);
 					String email=rs.getString(4);
+					byte[] image=rs.getBytes(5);
 					UserDTO obj= new UserDTO();
 					obj.setFullName(fullName);
 					obj.setUserName(userName);
 					obj.setContact(contact);
 					obj.setEmail(email);
+					obj.setImage(image);
 					user.add(obj);
 				}
 			}
@@ -164,7 +168,7 @@ public class UserDAO {
 		
 		PreparedStatement pstmt;
 		ResultSet rs;
-		String query="SELECT fullname,username,contact,email from user WHERE username=?";
+		String query="SELECT fullname,username,contact,email,image from user WHERE username=?";
 		String username=dto.getUserName();
 		
 		try {
@@ -176,11 +180,13 @@ public class UserDAO {
 				String userName=rs.getString(2);
 				long contact=rs.getLong(3);
 				String email=rs.getString(4);
+				byte[] image=rs.getBytes(5);
 				UserDTO obj= new UserDTO();
 				obj.setFullName(fullName);
 				obj.setUserName(userName);
 				obj.setContact(contact);
 				obj.setEmail(email);
+				obj.setImage(image);
 				user.add(obj);
 			}
 		} catch (SQLException e) {
@@ -190,5 +196,30 @@ public class UserDAO {
 		
 		return user;
 		
+	}
+	
+	
+	public boolean userExist(String username) {
+		
+		boolean flag=false;
+		PreparedStatement pstmt;
+		ResultSet rs;
+		String query="SELECT username from user where username=?";
+		 
+		try {
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1, username);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				flag=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return flag;
 	}
 }
